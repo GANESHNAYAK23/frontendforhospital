@@ -14,7 +14,10 @@ const AddDoct = () => {
       position: "Doctor",
       salary: "50000",
     },
+
+    // add values from back end
   ]);
+
   //   const [formData, setFormData] = useState({
   //     name: "",
   //     email: "",
@@ -22,10 +25,10 @@ const AddDoct = () => {
   //     salary: "",
   //   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  //   const handleInputChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setFormData({ ...formData, [name]: value });
+  //   };
 
   //   const handleAddMember = () => {
   //     setTableItems([...tableItems, formData]);
