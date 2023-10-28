@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 const AddDoct = () => {
   const [tableItems, setTableItems] = useState([]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    position: "",
-    salary: "",
+    department: "",
+    gender: "",
+    phone: "",
   });
 
   const handleInputChange = (e) => {
@@ -19,8 +21,10 @@ const AddDoct = () => {
     setFormData({
       name: "",
       email: "",
-      position: "",
-      salary: "",
+      department: "",
+      password: "",
+      gender: "",
+      phone: "",
     });
   };
 
@@ -29,6 +33,8 @@ const AddDoct = () => {
     updatedTableItems.splice(idx, 1);
     setTableItems(updatedTableItems);
   };
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -63,24 +69,32 @@ const AddDoct = () => {
           <div className="mb-4">
             <input
               type="text"
-              name="position"
-              value={formData.position}
+              name="department"
+              value={formData.department}
               onChange={handleInputChange}
-              placeholder="Position"
+              placeholder="Department"
               className="px-4 py-2 rounded-lg w-full"
               required
             />
           </div>
           <div className="mb-4">
             <input
-              type="text"
-              name="salary"
-              value={formData.salary}
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
               onChange={handleInputChange}
-              placeholder="Salary"
+              placeholder="Password
+              "
               className="px-4 py-2 rounded-lg w-full"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="password-toggle-button"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
           <button
             type="button"
@@ -97,8 +111,8 @@ const AddDoct = () => {
             <tr>
               <th className="py-3 px-6">Username</th>
               <th className="py-3 px-6">Email</th>
-              <th className="py-3 px-6">Position</th>
-              <th className="py-3 px-6">Salary</th>
+              <th className="py-3 px-6">Password</th>
+              <th className="py-3 px-6">department</th>
               <th className="py-3 px-6"></th>
             </tr>
           </thead>
@@ -107,8 +121,10 @@ const AddDoct = () => {
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.position}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.salary}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.password}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {item.department}
+                </td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
                     type="button"
