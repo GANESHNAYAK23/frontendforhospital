@@ -9,6 +9,7 @@ const AddDoct = () => {
     department: "",
     gender: "",
     phone: "",
+    password: "",
   });
 
   const handleInputChange = (e) => {
@@ -17,6 +18,7 @@ const AddDoct = () => {
   };
 
   const handleAddMember = () => {
+    console.log(formData);
     setTableItems([...tableItems, formData]);
     setFormData({
       name: "",
@@ -47,6 +49,7 @@ const AddDoct = () => {
         </div>
         <div className="flex justify-center mt-6">
           <form className="max-w-md w-full">
+            {/* name */}
             <div className="mb-4">
               <input
                 type="text"
@@ -58,6 +61,7 @@ const AddDoct = () => {
                 required
               />
             </div>
+            {/* email */}
             <div className="mb-4">
               <input
                 type="email"
@@ -69,6 +73,7 @@ const AddDoct = () => {
                 required
               />
             </div>
+            {/* department */}
             <div className="mb-4">
               <input
                 type="text"
@@ -80,14 +85,47 @@ const AddDoct = () => {
                 required
               />
             </div>
+            {/* phone */}
+            <div className="mb-4">
+              <input
+                type="number"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="Phone"
+                className="px-4 py-2 rounded-lg w-full bg-white bg-opacity-75"
+                required
+              />
+            </div>
+            {/* gender */}
+            <div className="mb-4">
+              <label htmlFor="gender" className="block text-gray-700">
+                Gender
+              </label>
+              <select
+                id="gender"
+                name="gender"
+                className="w-full p-2 border rounded focus:outline-none"
+                value={formData.gender}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            {/* password */}
             <div className="mb-4">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                placeholder="Password
-              "
+                placeholder="Password"
                 className="px-4 py-2 rounded-lg w-full"
                 required
               />
