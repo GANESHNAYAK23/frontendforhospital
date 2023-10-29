@@ -1,10 +1,9 @@
 import React from "react";
-import Appointments from "../components/Appointments.jsx";
-
+import Table from "../components/Table.jsx"
 const Patient = () => {
   return (
     <div>
-      <Appointments />
+      <Table />
     </div>
   );
 };

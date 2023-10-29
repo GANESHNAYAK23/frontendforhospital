@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import DoctorDashboard from "./pages/DoctorDashboard";
 import Patient from "./pages/Patient";
 import ErrorPage from "./pages/ErrorPage";
 
@@ -18,6 +18,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/patient" element={<Patient />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/DoctorDashboard" element={<DoctorDashboard />} />
+        <Route path="" element={<DoctorDashboard />} />
       </Routes>
       <Footer />
     </Router>
