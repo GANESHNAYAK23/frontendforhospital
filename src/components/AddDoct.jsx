@@ -37,73 +37,77 @@ const AddDoct = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-      <div className="text-center">
-        <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Doctors</h3>
-        <p className="text-gray-600 mt-2">Add and view doctors</p>
-      </div>
-      <div className="flex justify-center mt-6">
-        <form className="max-w-md w-full">
-          <div className="mb-4">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Name"
-              className="px-4 py-2 rounded-lg w-full"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-              className="px-4 py-2 rounded-lg w-full"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="text"
-              name="department"
-              value={formData.department}
-              onChange={handleInputChange}
-              placeholder="Department"
-              className="px-4 py-2 rounded-lg w-full"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              placeholder="Password
+    <div>
+      <div className="max-w-screen-xl mx-auto pt-8 pb-10 md:px-4 rounded-lg backdrop-blur-sm bg-black/30 ">
+        <div className="text-center">
+          <h3 className="text-yellow-100 text-xl font-bold sm:text-2xl">
+            Doctors
+          </h3>
+          <p className="text-white mt-2">Add and view doctors</p>
+        </div>
+        <div className="flex justify-center mt-6">
+          <form className="max-w-md w-full">
+            <div className="mb-4">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Name"
+                className="px-4 py-2 rounded-lg w-full bg-white bg-opacity-75"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Email"
+                className="px-4 py-2 rounded-lg w-full"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                name="department"
+                value={formData.department}
+                onChange={handleInputChange}
+                placeholder="Department"
+                className="px-4 py-2 rounded-lg w-full"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Password
               "
-              className="px-4 py-2 rounded-lg w-full"
-              required
-            />
+                className="px-4 py-2 rounded-lg w-full"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="password-toggle-button"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
             <button
               type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="password-toggle-button"
+              onClick={handleAddMember}
+              className="w-full bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-medium py-2 rounded-lg transition duration-150"
             >
-              {showPassword ? "Hide" : "Show"}
+              Add member
             </button>
-          </div>
-          <button
-            type="button"
-            onClick={handleAddMember}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-medium py-2 rounded-lg transition duration-150"
-          >
-            Add member
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
@@ -116,7 +120,7 @@ const AddDoct = () => {
               <th className="py-3 px-6"></th>
             </tr>
           </thead>
-          <tbody className="text-gray-600 divide-y">
+          <tbody className=" bg-gray-50 text-gray-600 divide-y">
             {tableItems.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>

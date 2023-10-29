@@ -8,7 +8,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-500 p-4 sticky top-0">
+    <nav className="bg-blue-500 p-4 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="text-2xl font-bold text-white">
           My Website

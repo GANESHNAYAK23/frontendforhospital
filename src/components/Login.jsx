@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -11,10 +12,27 @@ const Login = () => {
   const [gender, setGender] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showSignup, setShowSignup] = useState(false);
-
   const handleLogin = (e) => {
     e.preventDefault();
     // Add your login logic here
+    const dataToSend = {
+      email: loginEmail,
+      password: loginPassword,
+    };
+    Axios.post("http://localhost:3000/checkUser", dataToSend, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        // Handle the response from the server
+        console.log(response);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error("Error:", error);
+      });
+
     console.log("Login Email:", loginEmail);
     console.log("Login Password:", loginPassword);
   };
