@@ -1,44 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 
-const AddDoct = () => {
-  const [tableItems, setTableItems] = useState([
-    {
-      name: "Ganesh",
-      email: "wzOZC@example.com",
-      position: "Doctor",
-      salary: "50000",
-    },
-    {
-      name: "suman",
-      email: "wzOZC@example.com",
-      position: "Doctor",
-      salary: "50000",
-    },
+const ViewPatients = () => {
+  const [tableItems, setTableItems] = useState([]);
 
-    // add values from back end
-  ]);
-
-  //   const [formData, setFormData] = useState({
-  //     name: "",
-  //     email: "",
-  //     position: "",
-  //     salary: "",
-  //   });
-
-  //   const handleInputChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormData({ ...formData, [name]: value });
-  //   };
-
-  //   const handleAddMember = () => {
-  //     setTableItems([...tableItems, formData]);
-  //     setFormData({
-  //       name: "",
-  //       email: "",
-  //       position: "",
-  //       salary: "",
-  //     });
-  //   };
+  useEffect(() => {
+    const getTableItems = async () => {
+      try {
+        const response = await Axios.post("http://localhost:3000/findPatient");
+        setTableItems(response.data.alluser);
+        console.log("response.data");
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+        setTableItems([]);
+      }
+    };
+    getTableItems();
+  }, []);
 
   const handleDelete = (idx) => {
     const updatedTableItems = [...tableItems];
@@ -91,4 +70,4 @@ const AddDoct = () => {
   );
 };
 
-export default AddDoct;
+export default ViewPatients;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 
 const AddDoct = () => {
   const [tableItems, setTableItems] = useState([]);
@@ -7,10 +8,25 @@ const AddDoct = () => {
     name: "",
     email: "",
     department: "",
-    gender: "",
+    sex: "",
     phone: "",
     password: "",
   });
+
+  useEffect(() => {
+    const getTableItems = async () => {
+      try {
+        const response = await Axios.post("http://localhost:3000/find");
+        setTableItems(response.data.alluser);
+        console.log("response.data");
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+        setTableItems([]);
+      }
+    };
+    getTableItems();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -18,14 +34,13 @@ const AddDoct = () => {
   };
 
   const handleAddMember = () => {
-    console.log(formData);
     setTableItems([...tableItems, formData]);
     setFormData({
       name: "",
       email: "",
       department: "",
       password: "",
-      gender: "",
+      sex: "", // Update to 'sex'
       phone: "",
     });
   };
@@ -147,6 +162,7 @@ const AddDoct = () => {
           </form>
         </div>
       </div>
+
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
@@ -158,15 +174,14 @@ const AddDoct = () => {
               <th className="py-3 px-6"></th>
             </tr>
           </thead>
+
           <tbody className=" bg-gray-50 text-gray-600 divide-y">
             {tableItems.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.password}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {item.department}
-                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.sex}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
                     type="button"

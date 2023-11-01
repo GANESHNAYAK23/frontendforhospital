@@ -25,8 +25,9 @@ const Login = () => {
       },
     })
       .then((response) => {
-        // Handle the response from the server
-        console.log(response);
+        if (response.data) {
+          console.log("Login Successful");
+        }
       })
       .catch((error) => {
         // Handle any errors
