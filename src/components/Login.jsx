@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
@@ -19,18 +21,27 @@ const Login = () => {
       email: loginEmail,
       password: loginPassword,
     };
-    Axios.post("http://localhost:3000/checkUser", dataToSend, {
+    Axios.post("http://localhost:3000/login", dataToSend, {
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((response) => {
         if (response.data) {
+          alert("Login Successful");
           console.log("Login Successful");
+          if (response.data.user.role === "PATIENT") {
+            navigate("/Patient");
+          } else if (response.data.user.role === "DOCTOR") {
+            navigate("/DoctorDashboard");
+          } else {
+            navigate("/Admin");
+          }
         }
       })
       .catch((error) => {
         // Handle any errors
+        alert(error);
         console.error("Error:", error);
       });
 
@@ -42,6 +53,15 @@ const Login = () => {
     e.preventDefault();
     // Add your signup logic here
     if (confirmPassword === signupPassword) {
+      const data = {
+        name: name,
+        email: signupEmail,
+        password: confirmPassword,
+        age: age,
+        sex: gender,
+        phone_number: phoneNumber,
+        role: "PATIENT",
+      };
       console.log("Name:", name);
       console.log("Age:", age);
       console.log("Phone Number:", phoneNumber);
@@ -49,6 +69,22 @@ const Login = () => {
       console.log("Signup Email:", signupEmail);
       console.log("confirm Password:", confirmPassword);
       console.log("Signup Password:", signupPassword);
+      Axios.post("http://localhost:3000/addUser", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.data) {
+            alert("Signup Successful");
+            console.log("Signup Successful");
+          }
+        })
+        .catch((error) => {
+          // Handle any errors
+          alert("Signup Failed");
+          console.error("Error:", error);
+        });
       setShowSignup(false);
     } else {
       alert("Password doesn't match");
