@@ -42,7 +42,9 @@ const Appointments = () => {
   });
 
   const handleAddAppointment = () => {
-    setTableItems([...tableItems, newProduct]);
+    if(newProduct.name && newProduct.date && newProduct.time  && newProduct.specialization){
+    alert("Appointment Added");
+    setTableItems([...tableItems, newProduct]); 
     setNewAppointment({
       name: "",
       date: "",
@@ -51,7 +53,11 @@ const Appointments = () => {
       phone: "",
       specialization: "",
     });
-  };
+  }
+  else{
+    alert("Fill all the fields");
+  }
+  };
 
   const handleChange = (e, field) => {
     setNewAppointment({ ...newProduct, [field]: e.target.value });
@@ -81,6 +87,7 @@ const Appointments = () => {
               {/* Doctor Names */}
                 <label htmlFor="doctors" className='mb-2 p-3'>Doctor:</label>
                 <select onChange={(e) => handleChange(e, "name")} name="doctors" id="doctors" className='mb-4 p-2 border rounded-md items-center justify-center'>
+                <option value="">Select</option>
                 <option value="John Brown">John Brown</option>
                 <option value="Jim Green">Jim Green</option>
                 <option value="Joe Black">Joe Black</option>
@@ -91,6 +98,7 @@ const Appointments = () => {
               {/* Specialization */}
                 <label htmlFor="doctors" className='mb-2 p-4'>Specialization:</label>
                 <select onChange={(e) => handleChange(e, "specialization")} name="doctors" id="doctors" className='mb-4 p-2 border rounded-md items-center justify-center' >
+                <option value="">Select</option>
                 <option value="ENT">ENT</option>
                 <option value="Skin">Skin</option>
                 <option value="Eyes">Eyes</option>
@@ -102,7 +110,7 @@ const Appointments = () => {
                 <input onChange={(e) => handleChange(e, "time")} type='time'  className='mb-4 px-5 py-2 border rounded-md items-center justify-center' />
             <button
               className="ml-4 px-2 py-4 bg-indigo-500 text-white rounded hover:bg-indigo-600 flex items-center" 
-              onClick={()=>handleClick(handleAddAppointment,alert("Appointment Booked"))}
+              onClick={()=>handleClick(handleAddAppointment)}
             >
               Book Appointment
             </button>

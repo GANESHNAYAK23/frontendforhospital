@@ -31,9 +31,11 @@ const AddDoct = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    
   };
 
   const handleAddMember = () => {
+    console.log(formData);
     setTableItems([...tableItems, formData]);
     setFormData({
       name: "",
@@ -43,6 +45,7 @@ const AddDoct = () => {
       sex: "", // Update to 'sex'
       phone: "",
     });
+    
   };
 
   const handleDelete = (idx) => {
@@ -119,13 +122,13 @@ const AddDoct = () => {
               </label>
               <select
                 id="gender"
-                name="gender"
+                name="sex"
                 className="w-full p-2 border rounded focus:outline-none"
                 value={formData.gender}
                 onChange={handleInputChange}
                 required
               >
-                <option value="" disabled>
+                <option value="" >
                   Select Gender
                 </option>
                 <option value="male">Male</option>
