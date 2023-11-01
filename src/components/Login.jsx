@@ -49,7 +49,9 @@ const Login = () => {
       console.log("Signup Email:", signupEmail);
       console.log("confirm Password:", confirmPassword);
       console.log("Signup Password:", signupPassword);
+      setShowSignup(false)
     } else {
+      alert("Password doesn't match");
       console.log("Password doesnt match");
     }
   };
